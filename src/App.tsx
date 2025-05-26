@@ -5,6 +5,7 @@ import arrow from './assets/arrow.png'
 import lynxLogo from './assets/lynx-logo.png'
 import reactLynxLogo from './assets/react-logo.png'
 import {useNavigate} from "react-router";
+import Button from "./Components/Button/index.js";
 
 export function App(props: {
   onMounted?: () => void
@@ -16,6 +17,12 @@ export function App(props: {
     console.info('Hello, ReactLynx')
     props.onMounted?.()
   }, [])
+
+  const [count, setCount] = useState<number>(0);
+  const increment = () => {
+    console.log(`increment ${count}`);
+    setCount(count + 1);
+  };
 
   const onTap = useCallback(() => {
     'background only'
@@ -41,11 +48,16 @@ export function App(props: {
           <text className='Hint'>
             Edit<text style={{ fontStyle: 'italic' }}>{' src/App.tsx '}</text>
             to see updates!
-
-            <view>
-              <text className='' bindtap={() => nav('/home')}>Navigate to Home</text>
-            </view>
           </text>
+
+
+          <Button label="Navigate to Home" onClick={() => nav('/home')} />
+          <Button label="Swiper Empty" onClick={() => nav('/SwiperEmpty')} />
+          <Button label="Increment Click" onClick={increment} />
+          <Button label="Clear Increment" onClick={() => setCount(0)} />
+          <view className="container">
+            <text className="count">Clicks: {count}</text>
+          </view>
         </view>
         <view style={{ flex: 1 }}></view>
       </view>

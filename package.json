@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@lynx-js/react": "^0.109.0",
+    "lynx": "^0.2.0",
     "react-router": "^6.30.1"
   },
   "devDependencies": {
@@ -20,7 +21,9 @@
     "@lynx-js/react-rsbuild-plugin": "^0.10.1",
     "@lynx-js/rspeedy": "^0.9.7",
     "@lynx-js/types": "^3.3.0",
+    "@rsbuild/plugin-sass": "^1.3.1",
     "@testing-library/jest-dom": "^6.6.3",
+    "@types/lynx": "^0.2.3",
     "@types/react": "^18.3.22",
     "autoprefixer": "^10.4.21",
     "jsdom": "^26.1.0",
