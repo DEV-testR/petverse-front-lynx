@@ -117,3 +117,7 @@ text {
   margin: 5px;
   color: rgba(255, 255, 255, 0.65);
 }
+
+.mt-50 {
+  margin-top: 50px;
+}

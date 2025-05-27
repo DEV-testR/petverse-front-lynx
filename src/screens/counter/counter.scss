@@ -1,0 +1,90 @@
+:root {
+    background-color: #000;
+    --color-text: #fff;
+}
+
+text {
+    color: var(--color-text);
+}
+
+.wrapper {
+    margin-top: 55px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.app {
+    position: fixed;
+    background: linear-gradient(to top, rgba(0,0,0,1) 10%, rgba(12,138,75, 0.05) 100%);
+    width: 100%;
+    height: 100%;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reset-btn {
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 5px 10px;
+
+    &:active {
+        transform: scale(0.96);
+        background-color: #b39500;
+    }
+
+    &.active {
+        background-color: #b33600;
+    }
+}
+
+.counter-btn {
+    // margin: 10px;
+
+    // background-color: #007bff;
+    /*color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;*/
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // padding: 11px 12px 13px 24px;
+    // transition: transform 0.1s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    // เอฟเฟกต์ยุบลงเมื่อกด
+    &:active {
+        transform: scale(0.96);
+        background-color: #06b300;
+    }
+
+    &.active {
+        background-color: #b30030;
+    }
+}
+
+.cnt-value {
+    font-size: 30px;
+    font-weight: 600;
+    margin-right: 5px;
+    margin-left: 5px;
+}
