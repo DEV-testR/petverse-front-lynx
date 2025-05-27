@@ -1,6 +1,10 @@
 'use strict';var globDynamicComponentEntry=globDynamicComponentEntry||'__Card__';
 "use strict";
 var __webpack_modules__ = ({
+"(react:main-thread)/./src/assets/close.png": (function (module, __unused_webpack_exports, __webpack_require__) {
+module.exports = __webpack_require__.p + "static/image/close.97118d6e.png";
+
+}),
 "(react:main-thread)/./src/assets/lynx-logo.png": (function (module, __unused_webpack_exports, __webpack_require__) {
 module.exports = __webpack_require__.p + "static/image/lynx-logo.620eb8d1.png";
 
@@ -13475,7 +13479,7 @@ __webpack_require__.d(__webpack_exports__, {
 /* ESM import */var _button_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:main-thread)/./src/components/Button/button.component.scss");
 
 
-const __snapshot_12971_607ef_1 = /*#__PURE__*/ (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_12971_607ef_1", function() {
+const __snapshot_12971_2b8f2_1 = /*#__PURE__*/ (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_12971_2b8f2_1", function() {
     const pageId = (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
     __SetClasses(el, "btn");
@@ -13495,7 +13499,7 @@ const __snapshot_12971_607ef_1 = /*#__PURE__*/ (__webpack_require__("(react:main
     ]
 ], undefined, globDynamicComponentEntry);
 function Button({ onClick, label = "Click Me" }) {
-    return /*#__PURE__*/ (0,_lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_12971_607ef_1, {
+    return /*#__PURE__*/ (0,_lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_12971_2b8f2_1, {
         values: [
             1
         ],
@@ -13832,14 +13836,31 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 });
 /* ESM import */var _lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lepus/jsx-runtime/index.js");
-/* ESM import */var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("(react:main-thread)/./node_modules/react-router/dist/index.js");
+/* ESM import */var react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("(react:main-thread)/./node_modules/react-router/dist/index.js");
 /* ESM import */var _components_Container_container_component_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:main-thread)/./src/components/Container/container.component.tsx");
 /* ESM import */var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("(react:main-thread)/./src/App.css");
+/* ESM import */var _assets_close_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("(react:main-thread)/./src/assets/close.png");
+/* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/index.js");
 
 
 
 
-const __snapshot_348a2_69c5d_1 = /*#__PURE__*/ (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_348a2_69c5d_1", function() {
+
+
+const __snapshot_348a2_70dbb_2 = /*#__PURE__*/ (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_348a2_70dbb_2", function() {
+    const pageId = (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
+    const el = __CreateImage(pageId);
+    __SetClasses(el, "closeIcon");
+    return [
+        el
+    ];
+}, [
+    (snapshot, index, oldValue)=>(__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 0, "bindEvent", "tap", ''),
+    function(ctx) {
+        if (ctx.__elements) __SetAttribute(ctx.__elements[0], "src", ctx.__values[1]);
+    }
+], null, undefined, globDynamicComponentEntry);
+const __snapshot_348a2_70dbb_1 = /*#__PURE__*/ (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_348a2_70dbb_1", function() {
     const pageId = (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
     const el1 = __CreateText(pageId);
@@ -13847,15 +13868,24 @@ const __snapshot_348a2_69c5d_1 = /*#__PURE__*/ (__webpack_require__("(react:main
     __AppendElement(el, el1);
     const el2 = __CreateRawText("Home");
     __AppendElement(el1, el2);
-    const el3 = __CreateText(pageId);
+    const el3 = __CreateView(pageId);
+    __SetClasses(el3, "inputView");
     __AppendElement(el, el3);
-    const el4 = __CreateRawText("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae modi odit praesentium? Amet asperiores enim fugiat illo iusto optio quae quia quidem, repellat sit tenetur vel. Autem eius similique unde.");
+    const el4 = __CreateElement("input", pageId);
+    __SetClasses(el4, "inputBox");
+    __SetAttribute(el4, "placeholder", "Search products here...");
     __AppendElement(el3, el4);
-    const el5 = __CreateText(pageId);
-    __SetClasses(el5, "Subtitle");
-    __AppendElement(el, el5);
-    const el6 = __CreateRawText("Back");
-    __AppendElement(el5, el6);
+    const el5 = __CreateWrapperElement(pageId);
+    __AppendElement(el3, el5);
+    const el6 = __CreateText(pageId);
+    __AppendElement(el, el6);
+    const el7 = __CreateRawText("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae modi odit praesentium? Amet asperiores enim fugiat illo iusto optio quae quia quidem, repellat sit tenetur vel. Autem eius similique unde.");
+    __AppendElement(el6, el7);
+    const el8 = __CreateText(pageId);
+    __SetClasses(el8, "Subtitle");
+    __AppendElement(el, el8);
+    const el9 = __CreateRawText("Back");
+    __AppendElement(el8, el9);
     return [
         el,
         el1,
@@ -13863,26 +13893,51 @@ const __snapshot_348a2_69c5d_1 = /*#__PURE__*/ (__webpack_require__("(react:main
         el3,
         el4,
         el5,
-        el6
+        el6,
+        el7,
+        el8,
+        el9
     ];
 }, [
-    (snapshot, index, oldValue)=>(__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 5, "bindEvent", "tap", '')
-], null, undefined, globDynamicComponentEntry);
+    (snapshot, index, oldValue)=>(__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 4, "bindEvent", "input", ''),
+    function(ctx) {
+        if (ctx.__elements) __SetAttribute(ctx.__elements[4], "value", ctx.__values[1]);
+    },
+    (snapshot, index, oldValue)=>(__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 8, "bindEvent", "tap", '')
+], [
+    [
+        (__webpack_require__("(react:main-thread)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren */.__DynamicPartChildren),
+        5
+    ]
+], undefined, globDynamicComponentEntry);
 const Home = ()=>{
-    (0,react_router__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+    (0,react_router__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+    const [search, setSearch] = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_4__.useState)("");
     return /*#__PURE__*/ (0,_lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Container_container_component_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        children: /*#__PURE__*/ (0,_lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_348a2_69c5d_1, {
+        children: /*#__PURE__*/ (0,_lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_348a2_70dbb_1, {
             values: [
+                1,
+                search,
                 1
-            ]
+            ],
+            children: search && /*#__PURE__*/ (0,_lynx_js_react_lepus_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_348a2_70dbb_2, {
+                values: [
+                    1,
+                    _assets_close_png__WEBPACK_IMPORTED_MODULE_3__
+                ]
+            }, void 0, false, {
+                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/home/home.tsx",
+                lineNumber: 27,
+                columnNumber: 25
+            }, undefined)
         }, void 0, false, {
             fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/home/home.tsx",
-            lineNumber: 9,
+            lineNumber: 16,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/home/home.tsx",
-        lineNumber: 8,
+        lineNumber: 15,
         columnNumber: 9
     }, undefined);
 };
@@ -14065,7 +14120,7 @@ __webpack_require__.hu = (chunkId) => ('' + chunkId + '.' + __webpack_require__.
 })();
 // webpack/runtime/get_full_hash
 (() => {
-__webpack_require__.h = () => ("9927ef050a6a247c")
+__webpack_require__.h = () => ("a73c8bd5296ec8c9")
 })();
 // webpack/runtime/get_main_filename/update manifest
 (() => {
@@ -14530,7 +14585,7 @@ if (typeof globalThis !== "undefined") {
 // webpack/runtime/lynx css hot update
 (() => {
 
-__webpack_require__.cssHotUpdateList = [["main__main-thread",".rspeedy/main__main-thread/main__main-thread.css.hot-update.json"]];
+__webpack_require__.cssHotUpdateList = [["main__main-thread",".rspeedy/main__main-thread/main__main-thread.14943a42a43df3a6.css.hot-update.json"]];
 
 })();
 // webpack/runtime/make_namespace_object

@@ -1,16 +1,13 @@
 import "./button.component.scss";
 
 interface ButtonProps {
-    onClick?: () => void; // เพิ่ม prop สำหรับ dynamic event
+    onClick?: () => void;
     label?: string;
 }
 
 export default function Button({onClick, label = "Click Me"}: ButtonProps) {
     return (
-        <view
-            className="btn"
-            bindtap={onClick} // แนบ event handler ที่ส่งเข้ามา
-        >
+        <view className="btn" bindtap={onClick}>
             <text className="btn-text">{label}</text>
         </view>
     );
