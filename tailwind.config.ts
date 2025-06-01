@@ -1,10 +1,11 @@
+/*
 const lynxPresent = require('@lynx-js/tailwind-preset');
-/** @type {import('tailwindcss').Config} */
+/!** @type {import('tailwindcss').Config} *!/
 export default {
     mode: 'jit',
     presets: [lynxPresent],
-    content: ['./src/**/*.{js,ts,tsx,jsx}'],
-    purge: ['./src/**/*.{js,ts,tsx,jsx}'],
+    content: ['./src/!**!/!*.{js,ts,tsx,jsx}'],
+    purge: ['./src/!**!/!*.{js,ts,tsx,jsx}'],
     plugins: [],
     theme: {
         colors: {
@@ -19,4 +20,9 @@ export default {
             "gray-light": "#d3dce6",
         },
     },
+};*/
+
+import preset from '@lynx-js/tailwind-preset';
+export default {
+    presets: [preset],
 };

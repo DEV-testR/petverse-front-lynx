@@ -121,6 +121,73 @@ module.exports = Object.freeze({
 
 
 }),
+"(react:background)/./node_modules/@lynx-js/react/components/lib/Page.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  Page: () => (Page)
+});
+/* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/index.js");
+/* ESM import */var _lynx_js_react_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js");
+// Copyright 2024 The Lynx Authors. All rights reserved.
+// Licensed under the Apache License Version 2.0 that can be found in the
+// LICENSE file in the root directory of this source tree.
+// We use "@lynx-js/react" here
+// because import * as ReactLynx from "@lynx-js/react/internal"; will be added when transform
+// no matter if we use "@lynx-js/react" here
+
+
+let pageMounted = false;
+const Page = /* @__PURE__ */ function() {
+    return (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function(props, ref) {
+        const { children, ...restProps } = props;
+        _lynx_js_react_internal__WEBPACK_IMPORTED_MODULE_1__.__root.setAttribute('values', [
+            {
+                ref,
+                ...restProps,
+                __spread: true
+            }
+        ]);
+        const isFirstPageElement = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_0__.useRef)(true);
+        (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+            if (pageMounted) {
+                lynx.reportError(new Error(`Attempt to render more than one \`<page />\`, which is not supported.`));
+                isFirstPageElement.current = false;
+            } else pageMounted = true;
+            return ()=>{
+                _lynx_js_react_internal__WEBPACK_IMPORTED_MODULE_1__.__root.setAttribute('values', [
+                    {
+                        ...Object.fromEntries(Object.entries(restProps).map(([key, _val])=>{
+                            return [
+                                key,
+                                undefined
+                            ];
+                        })),
+                        __spread: true
+                    }
+                ]);
+                /* v8 ignore next */ if (isFirstPageElement.current) pageMounted = false;
+            };
+        }, []);
+        return children;
+    });
+}();
+ //# sourceMappingURL=Page.js.map
+
+
+}),
+"(react:background)/./node_modules/@lynx-js/react/components/lib/index.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  Page: () => (/* reexport safe */ _Page_js__WEBPACK_IMPORTED_MODULE_0__.Page)
+});
+/* ESM import */var _Page_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/components/lib/Page.js");
+// Copyright 2024 The Lynx Authors. All rights reserved.
+// Licensed under the Apache License Version 2.0 that can be found in the
+// LICENSE file in the root directory of this source tree.
+ //# sourceMappingURL=index.js.map
+
+
+}),
 "(react:background)/./node_modules/@lynx-js/react/refresh/dist/index.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
@@ -2625,10 +2692,10 @@ class ListUpdateInfoRecording {
         if (SystemInfo.lynxSdkVersion === '2.14' || SystemInfo.lynxSdkVersion === '2.15' || SystemInfo.lynxSdkVersion === '2.16' || SystemInfo.lynxSdkVersion === '2.17' || SystemInfo.lynxSdkVersion === '2.18') {
             const elementIndex = this.list.__snapshot_def.slot[0][1];
             const listElement = this.list.__elements[elementIndex];
-            // `__GetAttributeByName` is avaiable since Lynx 2.14
+            // `__GetAttributeByName` is available since Lynx 2.14
             if (__GetAttributeByName(listElement, 'custom-list-name') === 'list-container') {
                 // `updateAction` must be full (not incremental) when Lynx version <= 2.18 and
-                // when `custom-list-name` is `list-container` (avaiable when Lynx version >= 2.14) is true,
+                // when `custom-list-name` is `list-container` (available when Lynx version >= 2.14) is true,
                 updates.length = 0;
                 this.list.childNodes.forEach((child, index)=>{
                     updates.push({
@@ -5085,9 +5152,10 @@ __webpack_require__.d(__webpack_exports__, {
     findJsFnHandle(execId, fnId) {
         const worklet = this.get(execId);
         if (!worklet) return undefined;
-        const f = (obj)=>{
-            if (obj === null || typeof obj !== 'object') return undefined;
-            if ('_jsFnId' in obj && obj._jsFnId === fnId) return obj;
+        const f = (value)=>{
+            if (value === null || typeof value !== 'object') return undefined;
+            const obj = value;
+            if ('_jsFnId' in obj && obj['_jsFnId'] === fnId) return obj;
             for(const i in obj){
                 const result = f(obj[i]);
                 if (result) return result;
@@ -5157,14 +5225,12 @@ let runOnBackgroundEnabled;
 /**
  * @internal
  */ function isMtsEnabled() {
-    if (mtsEnabled === undefined) mtsEnabled = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.isSdkVersionGt)(2, 13);
-    return mtsEnabled;
+    return mtsEnabled !== null && mtsEnabled !== void 0 ? mtsEnabled : mtsEnabled = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.isSdkVersionGt)(2, 13);
 }
 /**
  * @internal
  */ function isRunOnBackgroundEnabled() {
-    if (runOnBackgroundEnabled === undefined) runOnBackgroundEnabled = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.isSdkVersionGt)(2, 15);
-    return runOnBackgroundEnabled;
+    return runOnBackgroundEnabled !== null && runOnBackgroundEnabled !== void 0 ? runOnBackgroundEnabled : runOnBackgroundEnabled = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.isSdkVersionGt)(2, 15);
 }
 function clearConfigCacheForTesting() {
     mtsEnabled = undefined;
@@ -5211,6 +5277,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
   IndexMap: () => (IndexMap)
 });
+// Copyright 2024 The Lynx Authors. All rights reserved.
+// Licensed under the Apache License Version 2.0 that can be found in the
+// LICENSE file in the root directory of this source tree.
 class IndexMap {
     add(value) {
         const index = ++this.lastIndex;
@@ -15452,6 +15521,293 @@ function createMemoryRouter(routes, opts) {
 
 
 }),
+"(react:background)/./src/services/auth.service.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  AuthService: () => (AuthService),
+  authService: () => (authService)
+});
+/* ESM import */var _base_service_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./src/services/base.service.ts");
+/* ESM import */var _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./src/utils/stroage.ts");
+// src/services/auth.service.ts
+// นำเข้าเฉพาะที่จำเป็น
+
+
+const AUTH_API_PATH = '/auth';
+class AuthService extends _base_service_js__WEBPACK_IMPORTED_MODULE_0__.BaseService {
+    async getAccessToken() {
+        return await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__["default"].getItem(this.TOKEN_KEY);
+    }
+    async setAccessToken(token) {
+        debugger;
+        await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__["default"].setItem(this.TOKEN_KEY, token);
+    }
+    async removeAccessToken() {
+        await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__["default"].removeItem(this.TOKEN_KEY);
+    }
+    // เมธอด Login จะคืนค่าเป็น Promise<AuthResponse>
+    async login(form) {
+        const res = await this.fetchApi(`${AUTH_API_PATH}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        });
+        if (res && res.accessToken) await this.setAccessToken(res.accessToken);
+        else console.warn("[AuthService] Login response did not contain accessToken:", res);
+        return res;
+    }
+    // เมธอด Register จะคืนค่าเป็น Promise<User>
+    async register(form) {
+        return await this.fetchApi(`${AUTH_API_PATH}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        });
+    }
+    // เมธอด refreshToken จะคืนค่าเป็น Promise<AuthResponse>
+    async refreshToken() {
+        const res = await this.fetchApi(`${AUTH_API_PATH}/refresh`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (res && res.accessToken) await this.setAccessToken(res.accessToken);
+        return res;
+    }
+    // เมธอด Logout จะคืนค่าเป็น Promise<void>
+    async logout() {
+        await this.fetchApi(`${AUTH_API_PATH}/logout`, {
+            method: 'POST'
+        });
+        await this.removeAccessToken(); // ลบ token หลัง logout สำเร็จ
+    }
+    async isLoggedIn() {
+        const token = await this.getAccessToken();
+        return !!token;
+    }
+}
+const authService = new AuthService();
+
+
+}),
+"(react:background)/./src/services/base.service.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  BaseService: () => (BaseService)
+});
+/* ESM import */var _utils_stroage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./src/utils/stroage.ts");
+// src/services/base.service.ts
+
+class BaseService {
+    async fetchApi(path, options) {
+        const url = `${this.API_BASE_URL}${path}`;
+        let headers = (options === null || options === void 0 ? void 0 : options.headers) || {};
+        const isAuthRequest = path.startsWith('/auth');
+        // Attach Access Token
+        if (!isAuthRequest || path === '/auth/refresh') {
+            const accessToken = await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_0__["default"].getItem(this.TOKEN_KEY);
+            debugger;
+            if (accessToken) headers = {
+                ...headers,
+                'Authorization': `Bearer ${accessToken}`
+            };
+        }
+        try {
+            const response = await fetch(url, {
+                ...options,
+                headers: headers,
+                credentials: 'include'
+            });
+            // --- DEBUG: ตรวจสอบสถานะและ Headers ที่ได้รับ ---
+            console.log(`[fetchApi] Response for ${url}: status=${response.status}, ok=${response.ok}`);
+            console.log(`[fetchApi] Response Headers for ${url}:`);
+            response.headers.forEach((value, name)=>{
+                console.log(`  ${name}: ${value}`);
+            });
+            // ตรวจสอบ Error Response
+            if (!response.ok) {
+                let errorData = {};
+                try {
+                    const errorText = await response.text();
+                    console.error(`[fetchApi] Error Response Body (Text):`, errorText);
+                    // พยายาม parse เป็น JSON ถ้าเป็นไปได้
+                    if (errorText.startsWith('{') && errorText.endsWith('}')) errorData = JSON.parse(errorText);
+                } catch (e) {
+                    console.error(`[fetchApi] Error parsing error response body or not JSON:`, e);
+                }
+                const errorDetail = {
+                    message: errorData.message || `HTTP error! Status: ${response.status} for ${url}`,
+                    statusCode: response.status,
+                    errors: errorData.errors || undefined
+                };
+                throw new Error(JSON.stringify(errorDetail));
+            }
+            // --- จัดการ Success Response Body ---
+            const contentType = response.headers.get("content-type");
+            console.log(`[fetchApi] Content-Type for ${url}: ${contentType}`);
+            if (response.status === 204) return null;
+            else if (contentType && contentType.includes("application/json")) return await response.json();
+            else {
+                // หาก Content-Type เป็น null หรือไม่ใช่ application/json
+                // ให้พยายามอ่านเป็นข้อความก่อน แล้วลอง parse JSON ถ้าทำได้
+                const textBody = await response.text();
+                console.log(`[fetchApi] Attempting to parse non-JSON or null Content-Type body as JSON:`, textBody);
+                try {
+                    // ตรวจสอบว่า Body เป็น JSON ที่ถูกต้องหรือไม่
+                    if (textBody.startsWith('{') && textBody.endsWith('}')) return JSON.parse(textBody);
+                } catch (e) {
+                    console.warn(`[fetchApi] Body is not valid JSON, returning as text for ${url}:`, e);
+                }
+                // ถ้าไม่ใช่ JSON หรือ parse ไม่ได้ ให้คืนค่าเป็น text (หรือ null ถ้า T เป็น void)
+                return textBody;
+            }
+        } catch (error) {
+            console.error(`[BaseService] Global Catch Error for ${url}:`, error);
+            if (error instanceof Error && typeof error.message === 'string' && error.message.startsWith('{')) try {
+                throw JSON.parse(error.message);
+            } catch (parseError) {
+                throw {
+                    message: "An unexpected error occurred during error parsing.",
+                    originalError: error
+                };
+            }
+            throw {
+                message: error.message || "Network error or unhandled fetch error.",
+                originalError: error
+            };
+        }
+    }
+    constructor(){
+        this.API_BASE_URL = 'http://localhost:48080/api';
+        this.TOKEN_KEY = 'access_token';
+    }
+}
+
+
+}),
+"(react:background)/./src/services/user.service.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  UserService: () => (UserService),
+  userService: () => (userService)
+});
+/* ESM import */var _base_service_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./src/services/base.service.ts");
+/* ESM import */var _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./src/utils/stroage.ts");
+// src/services/user.service.ts
+// นำเข้าเฉพาะที่จำเป็น
+
+
+const USER_API_PATH = '/v1/users';
+const USER_DATA_KEY = 'userData';
+class UserService extends _base_service_js__WEBPACK_IMPORTED_MODULE_0__.BaseService {
+    async setUser(userData) {
+        if (!userData) {
+            await this.removeUser();
+            return;
+        }
+        await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__["default"].setItem(USER_DATA_KEY, JSON.stringify(userData));
+    }
+    async getUser() {
+        const item = await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__["default"].getItem(USER_DATA_KEY);
+        if (!item) return null;
+        try {
+            return JSON.parse(item);
+        } catch (e) {
+            console.error('Error parsing user data from LynxStorage', e);
+            await this.removeUser();
+            return null;
+        }
+    }
+    async removeUser() {
+        await _utils_stroage_js__WEBPACK_IMPORTED_MODULE_1__["default"].removeItem(USER_DATA_KEY);
+    }
+    // เมธอด fetchUser จะคืนค่าเป็น Promise<User | null>
+    async fetchUser() {
+        try {
+            const user = await this.fetchApi(`${USER_API_PATH}/me`, {
+                method: 'GET'
+            });
+            await this.setUser(user);
+            return user;
+        } catch (err) {
+            console.error('Failed to fetch user:', err);
+            await this.removeUser();
+            // โยน error ออกไปเพื่อให้ Component ที่เรียกใช้จัดการ
+            throw err;
+        }
+    }
+}
+const userService = new UserService();
+
+
+}),
+"(react:background)/./src/utils/stroage.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+});
+// src/utils/storage.ts
+// ** สิ่งสำคัญ: คุณต้องแน่ใจว่า NativeLocalStorageModule ถูก expose โดย Lynx **
+// ** และมีเมธอด getStorageItem, setStorageItem, clearStorage ตามที่เรียกใช้ **
+// ** การประกาศ NativeModules อาจจะขึ้นอยู่กับ global scope ของ Lynx **
+const LynxStorage = {
+    // getItem จะคืนค่า Promise<string | null>
+    getItem: async (key)=>{
+        return new Promise((resolve, reject)=>{
+            try {
+                // เรียกใช้ Native Module ที่เป็น Synchronous
+                const value = NativeModules.NativeLocalStorageModule.getStorageItem(key);
+                console.log(`[Storage] getItem('${key}'):`, value);
+                debugger;
+                resolve(value);
+            } catch (error) {
+                console.error(`[Storage] Failed to get item '${key}':`, error);
+                reject(error);
+            }
+        });
+    },
+    // setItem จะคืนค่า Promise<void>
+    setItem: async (key, value)=>{
+        return new Promise((resolve, reject)=>{
+            try {
+                // เรียกใช้ Native Module ที่เป็น Synchronous
+                debugger;
+                NativeModules.NativeLocalStorageModule.setStorageItem(key, value);
+                console.log(`[Storage] setItem('${key}'): '${value}'`);
+                resolve();
+            } catch (error) {
+                console.error(`[Storage] Failed to set item '${key}':`, error);
+                reject(error);
+            }
+        });
+    },
+    // removeItem จะคืนค่า Promise<void>
+    removeItem: async (key)=>{
+        return new Promise((resolve, reject)=>{
+            try {
+                // เรียกใช้ Native Module ที่เป็น Synchronous
+                NativeModules.NativeLocalStorageModule.clearStorage(); // หรือ removeItem(key) ถ้ามี
+                console.log(`[Storage] removeItem('${key}'): Cleared all storage (assuming clearStorage for now)`);
+                // หาก NativeLocalStorageModule.clearStorage() ลบทั้งหมด
+                // และคุณต้องการ removeItem แค่บางอัน
+                // คุณอาจจะต้องเปลี่ยน Native Module ให้มีเมธอด removeItem(key) โดยเฉพาะ
+                resolve();
+            } catch (error) {
+                console.error(`[Storage] Failed to remove item '${key}':`, error);
+                reject(error);
+            }
+        });
+    }
+};
+/* ESM default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LynxStorage);
+
+
+}),
 "(react:background)/./src/App.tsx": (function (module, __webpack_exports__, __webpack_require__) {
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
@@ -15473,7 +15829,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 
 
-const __snapshot_835da_77c76_3 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_77c76_3", function() {
+const __snapshot_835da_a09d9_3 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_a09d9_3", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateImage(pageId);
     __SetClasses(el, "Logo--react");
@@ -15485,7 +15841,7 @@ const __snapshot_835da_77c76_3 = /*#__PURE__*/ (__webpack_require__("(react:back
         if (ctx.__elements) __SetAttribute(ctx.__elements[0], "src", ctx.__values[0]);
     }
 ], null, undefined, globDynamicComponentEntry);
-const __snapshot_835da_77c76_4 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_77c76_4", function() {
+const __snapshot_835da_a09d9_4 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_a09d9_4", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateImage(pageId);
     __SetClasses(el, "Logo--lynx");
@@ -15497,7 +15853,7 @@ const __snapshot_835da_77c76_4 = /*#__PURE__*/ (__webpack_require__("(react:back
         if (ctx.__elements) __SetAttribute(ctx.__elements[0], "src", ctx.__values[0]);
     }
 ], null, undefined, globDynamicComponentEntry);
-const __snapshot_835da_77c76_2 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_77c76_2", function() {
+const __snapshot_835da_a09d9_2 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_a09d9_2", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
     __SetClasses(el, "Logo");
@@ -15507,7 +15863,7 @@ const __snapshot_835da_77c76_2 = /*#__PURE__*/ (__webpack_require__("(react:back
 }, [
     (snapshot, index, oldValue)=>(__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 0, "bindEvent", "tap", '')
 ], (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren_0 */.__DynamicPartChildren_0), undefined, globDynamicComponentEntry);
-const __snapshot_835da_77c76_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_77c76_1", function() {
+const __snapshot_835da_a09d9_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_835da_a09d9_1", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
     const el1 = __CreateView(pageId);
@@ -15572,13 +15928,13 @@ function App(props) {
     }, [
         alterLogo
     ]);
-    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_77c76_1, {
+    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_a09d9_1, {
         children: [
-            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_77c76_2, {
+            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_a09d9_2, {
                 values: [
                     onTap
                 ],
-                children: alterLogo ? /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_77c76_3, {
+                children: alterLogo ? /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_a09d9_3, {
                     values: [
                         _assets_react_logo_png__WEBPACK_IMPORTED_MODULE_4__
                     ]
@@ -15586,7 +15942,7 @@ function App(props) {
                     fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/App.tsx",
                     lineNumber: 31,
                     columnNumber: 31
-                }, this) : /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_77c76_4, {
+                }, this) : /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_835da_a09d9_4, {
                     values: [
                         _assets_lynx_logo_png__WEBPACK_IMPORTED_MODULE_3__
                     ]
@@ -15602,28 +15958,36 @@ function App(props) {
             }, this),
             /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("wrapper", {
                 children: [
-                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                        label: "Navigate to Home",
-                        onClick: ()=>nav('/home')
+                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                        onClick: ()=>nav('/home'),
+                        children: "Navigate to Home"
                     }, void 0, false, {
                         fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/App.tsx",
                         lineNumber: 37,
                         columnNumber: 17
                     }, this),
-                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                        label: "Navigate to Product",
-                        onClick: ()=>nav('/product')
+                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                        onClick: ()=>nav('/product'),
+                        children: "Navigate to Product"
                     }, void 0, false, {
                         fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/App.tsx",
                         lineNumber: 38,
                         columnNumber: 17
                     }, this),
-                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                        label: "Navigate to Counter",
-                        onClick: ()=>nav('/counter')
+                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                        onClick: ()=>nav('/counter'),
+                        children: "Navigate to Counter"
                     }, void 0, false, {
                         fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/App.tsx",
                         lineNumber: 39,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                        onClick: ()=>nav('/login'),
+                        children: "Navigate to Login"
+                    }, void 0, false, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/App.tsx",
+                        lineNumber: 40,
                         columnNumber: 17
                     }, this)
                 ]
@@ -15693,7 +16057,7 @@ if (moduleHot) {
 "(react:background)/./src/components/Button/button.component.tsx": (function (module, __webpack_exports__, __webpack_require__) {
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (Button)
+  Button: () => (Button)
 });
 /* ESM import */var _lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/jsx-dev-runtime/index.js");
 /* ESM import */var _button_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./src/components/Button/button.component.scss");
@@ -15701,18 +16065,20 @@ __webpack_require__.d(__webpack_exports__, {
 /* provided dependency */ var __prefresh_utils__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react-refresh-webpack-plugin/runtime/refresh.cjs");
 
 
-const __snapshot_12971_2b8f2_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_12971_2b8f2_1", function() {
+const __snapshot_12971_efcbe_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_12971_efcbe_1", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
-    __SetClasses(el, "btn");
     const el1 = __CreateText(pageId);
-    __SetClasses(el1, "btn-text");
+    __SetClasses(el1, "button-text");
     __AppendElement(el, el1);
     return [
         el,
         el1
     ];
 }, [
+    function(ctx) {
+        if (ctx.__elements) __SetClasses(ctx.__elements[0], ctx.__values[0] || '');
+    },
     (snapshot, index, oldValue)=>(__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 0, "bindEvent", "tap", '')
 ], [
     [
@@ -15720,15 +16086,16 @@ const __snapshot_12971_2b8f2_1 = /*#__PURE__*/ (__webpack_require__("(react:back
         1
     ]
 ], undefined, globDynamicComponentEntry);
-function Button({ onClick, label = "Click Me" }) {
-    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_12971_2b8f2_1, {
+function Button({ onClick, children, className }) {
+    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_12971_efcbe_1, {
         values: [
+            `button-component ${className || ''}`,
             onClick
         ],
-        children: label
+        children: children
     }, void 0, false, {
         fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/components/Button/button.component.tsx",
-        lineNumber: 10,
+        lineNumber: 12,
         columnNumber: 9
     }, this);
 }
@@ -15816,6 +16183,206 @@ const Container = ({ children })=>{
     }, undefined);
 };
 /* ESM default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Container);
+
+
+// @ts-nocheck
+const isPrefreshComponent = __prefresh_utils__.shouldBind(module);
+
+const moduleHot = module.hot;
+
+if (moduleHot) {
+  const currentExports = __prefresh_utils__.getExports(module);
+  const previousHotModuleExports = moduleHot.data
+    && moduleHot.data.moduleExports;
+
+  __prefresh_utils__.registerExports(currentExports, module.id);
+
+  if (isPrefreshComponent) {
+    if (previousHotModuleExports) {
+      try {
+        __prefresh_utils__.flush();
+        if (
+          typeof __prefresh_errors__ !== 'undefined'
+          && __prefresh_errors__
+          && __prefresh_errors__.clearRuntimeErrors
+        ) {
+          __prefresh_errors__.clearRuntimeErrors();
+        }
+      } catch (e) {
+        // Only available in newer webpack versions.
+        if (moduleHot.invalidate) {
+          moduleHot.invalidate();
+        } else {
+          globalThis.location.reload();
+        }
+      }
+    }
+
+    moduleHot.dispose(data => {
+      data.moduleExports = __prefresh_utils__.getExports(module);
+    });
+
+    moduleHot.accept(function errorRecovery() {
+      if (
+        typeof __prefresh_errors__ !== 'undefined'
+        && __prefresh_errors__
+        && __prefresh_errors__.handleRuntimeError
+      ) {
+        __prefresh_errors__.handleRuntimeError(error);
+      }
+
+      __webpack_require__.c[module.id].hot.accept(errorRecovery);
+    });
+  }
+}
+
+
+}),
+"(react:background)/./src/components/ToastMessage/toastMessage.component.tsx": (function (module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  ToastProvider: () => (ToastProvider),
+  useToast: () => (useToast)
+});
+/* ESM import */var _lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/jsx-dev-runtime/index.js");
+/* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/index.js");
+/* ESM import */var _toastMessages_component_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("(react:background)/./src/components/ToastMessage/toastMessages.component.scss");
+/* module decorator */ module = __webpack_require__.hmd(module);
+/* provided dependency */ var __prefresh_utils__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react-refresh-webpack-plugin/runtime/refresh.cjs");
+
+
+ // สไตล์สำหรับ ToastMessages
+const ToastContext = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.createContext)(undefined);
+// Hook สำหรับใช้ใน Components อื่นๆ เพื่อส่งข้อความ Toast
+const useToast = ()=>{
+    const context = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.useContext)(ToastContext);
+    if (context === undefined) throw new Error('useToast must be used within a ToastProvider');
+    return context;
+};
+const __snapshot_c0a76_399e3_3 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_c0a76_399e3_3", function() {
+    const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
+    const el = __CreateText(pageId);
+    __SetClasses(el, "toast-summary");
+    return [
+        el
+    ];
+}, null, (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren_0 */.__DynamicPartChildren_0), undefined, globDynamicComponentEntry);
+const __snapshot_c0a76_399e3_4 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_c0a76_399e3_4", function() {
+    const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
+    const el = __CreateText(pageId);
+    __SetClasses(el, "toast-detail");
+    return [
+        el
+    ];
+}, null, (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren_0 */.__DynamicPartChildren_0), undefined, globDynamicComponentEntry);
+const __snapshot_c0a76_399e3_2 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_c0a76_399e3_2", function() {
+    const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
+    const el = __CreateView(pageId);
+    const el1 = __CreateWrapperElement(pageId);
+    __AppendElement(el, el1);
+    const el2 = __CreateWrapperElement(pageId);
+    __AppendElement(el, el2);
+    return [
+        el,
+        el1,
+        el2
+    ];
+}, [
+    function(ctx) {
+        if (ctx.__elements) __SetClasses(ctx.__elements[0], ctx.__values[0] || '');
+    }
+], [
+    [
+        (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartSlot */.__DynamicPartSlot),
+        1
+    ],
+    [
+        (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartSlot */.__DynamicPartSlot),
+        2
+    ]
+], undefined, globDynamicComponentEntry);
+const __snapshot_c0a76_399e3_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_c0a76_399e3_1", function() {
+    const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
+    const el = __CreateView(pageId);
+    __SetClasses(el, "toast-container");
+    return [
+        el
+    ];
+}, null, (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren_0 */.__DynamicPartChildren_0), undefined, globDynamicComponentEntry);
+function ToastProvider({ children }) {
+    const [toasts, setToasts] = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+    // Function สำหรับเพิ่ม Toast Message
+    const addToast = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((message)=>{
+        const newToast = {
+            ...message,
+            id: Math.random().toString(36).substring(2, 9),
+            duration: message.duration || 3000
+        };
+        setToasts((prevToasts)=>[
+                ...prevToasts,
+                newToast
+            ]);
+    }, []);
+    // Effect สำหรับจัดการการลบ Toast โดยอัตโนมัติ
+    (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        if (toasts.length > 0) {
+            const timer = setTimeout(()=>{
+                // ลบ Toast ตัวแรกออกหลังจาก duration ที่กำหนด
+                setToasts((prevToasts)=>prevToasts.slice(1));
+            }, toasts[0].duration); // ใช้ duration ของ Toast ตัวแรกที่กำลังแสดง
+            return ()=>clearTimeout(timer); // Clear timer เมื่อ Component unmount หรือ toasts เปลี่ยน
+        }
+    }, [
+        toasts
+    ]); // Re-run effect เมื่อ toasts array เปลี่ยน
+    // Context Value
+    const contextValue = {
+        addToast
+    };
+    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(ToastContext.Provider, {
+        value: contextValue,
+        children: [
+            children,
+            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_c0a76_399e3_1, {
+                children: toasts.map((toast)=>/*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_c0a76_399e3_2, {
+                        values: [
+                            `toast-item toast-${toast.severity}`
+                        ],
+                        children: [
+                            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_c0a76_399e3_3, {
+                                children: toast.summary
+                            }, void 0, false, {
+                                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/components/ToastMessage/toastMessage.component.tsx",
+                                lineNumber: 67,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("wrapper", {
+                                children: toast.detail && /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_c0a76_399e3_4, {
+                                    children: toast.detail
+                                }, void 0, false, {
+                                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/components/ToastMessage/toastMessage.component.tsx",
+                                    lineNumber: 68,
+                                    columnNumber: 42
+                                }, this)
+                            }, void 0, false, void 0, this)
+                        ]
+                    }, toast.id, true, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/components/ToastMessage/toastMessage.component.tsx",
+                        lineNumber: 66,
+                        columnNumber: 21
+                    }, this))
+            }, void 0, false, {
+                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/components/ToastMessage/toastMessage.component.tsx",
+                lineNumber: 64,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/components/ToastMessage/toastMessage.component.tsx",
+        lineNumber: 61,
+        columnNumber: 9
+    }, this);
+}
 
 
 // @ts-nocheck
@@ -15959,11 +16526,13 @@ if (moduleHot) {
 __webpack_require__.r(__webpack_exports__);
 /* ESM import */var _lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/jsx-dev-runtime/index.js");
 /* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/index.js");
-/* ESM import */var react_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("(react:background)/./node_modules/react-router/dist/index.js");
+/* ESM import */var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("(react:background)/./node_modules/react-router/dist/index.js");
 /* ESM import */var _App_tsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("(react:background)/./src/App.tsx");
 /* ESM import */var _screens_home_home_tsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("(react:background)/./src/screens/home/home.tsx");
 /* ESM import */var _screens_product_product_tsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("(react:background)/./src/screens/product/product.tsx");
 /* ESM import */var _screens_counter_counter_tsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("(react:background)/./src/screens/counter/counter.tsx");
+/* ESM import */var _screens_login_login_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("(react:background)/./src/screens/login/login.tsx");
+/* ESM import */var _components_ToastMessage_toastMessage_component_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("(react:background)/./src/components/ToastMessage/toastMessage.component.tsx");
 /* module decorator */ module = __webpack_require__.hmd(module);
 /* provided dependency */ var __prefresh_utils__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react-refresh-webpack-plugin/runtime/refresh.cjs");
 
@@ -15973,66 +16542,86 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.root.render(/*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_6__.MemoryRouter, {
-    children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_6__.Routes, {
-        children: [
-            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_6__.Route, {
-                path: "/",
-                element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_App_tsx__WEBPACK_IMPORTED_MODULE_2__.App, {}, void 0, false, {
-                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                    lineNumber: 11,
-                    columnNumber: 38
-                }, void 0)
-            }, void 0, false, {
-                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                lineNumber: 11,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_6__.Route, {
-                path: "/home",
-                element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_home_home_tsx__WEBPACK_IMPORTED_MODULE_3__["default"], {}, void 0, false, {
-                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                    lineNumber: 12,
-                    columnNumber: 42
-                }, void 0)
-            }, void 0, false, {
-                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                lineNumber: 12,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_6__.Route, {
-                path: "/product",
-                element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_product_product_tsx__WEBPACK_IMPORTED_MODULE_4__["default"], {}, void 0, false, {
-                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                    lineNumber: 13,
-                    columnNumber: 45
-                }, void 0)
-            }, void 0, false, {
-                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                lineNumber: 13,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_6__.Route, {
-                path: "/counter",
-                element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_counter_counter_tsx__WEBPACK_IMPORTED_MODULE_5__.Counter, {}, void 0, false, {
+
+
+_lynx_js_react__WEBPACK_IMPORTED_MODULE_1__.root.render(/*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.MemoryRouter, {
+    children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_ToastMessage_toastMessage_component_js__WEBPACK_IMPORTED_MODULE_7__.ToastProvider, {
+        children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.Routes, {
+            children: [
+                /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
+                    path: "/",
+                    element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_App_tsx__WEBPACK_IMPORTED_MODULE_2__.App, {}, void 0, false, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                        lineNumber: 14,
+                        columnNumber: 38
+                    }, void 0)
+                }, void 0, false, {
                     fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
                     lineNumber: 14,
-                    columnNumber: 45
-                }, void 0)
-            }, void 0, false, {
-                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-                lineNumber: 14,
-                columnNumber: 13
-            }, undefined)
-        ]
-    }, void 0, true, {
+                    columnNumber: 13
+                }, undefined),
+                /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
+                    path: "/home",
+                    element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_home_home_tsx__WEBPACK_IMPORTED_MODULE_3__["default"], {}, void 0, false, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                        lineNumber: 15,
+                        columnNumber: 42
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                    lineNumber: 15,
+                    columnNumber: 13
+                }, undefined),
+                /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
+                    path: "/product",
+                    element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_product_product_tsx__WEBPACK_IMPORTED_MODULE_4__["default"], {}, void 0, false, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                        lineNumber: 16,
+                        columnNumber: 45
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                    lineNumber: 16,
+                    columnNumber: 13
+                }, undefined),
+                /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
+                    path: "/counter",
+                    element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_counter_counter_tsx__WEBPACK_IMPORTED_MODULE_5__.Counter, {}, void 0, false, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                        lineNumber: 17,
+                        columnNumber: 45
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                    lineNumber: 17,
+                    columnNumber: 13
+                }, undefined),
+                /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
+                    path: "/login",
+                    element: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_screens_login_login_js__WEBPACK_IMPORTED_MODULE_6__.LoginScreen, {}, void 0, false, {
+                        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                        lineNumber: 18,
+                        columnNumber: 43
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+                    lineNumber: 18,
+                    columnNumber: 13
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
+            lineNumber: 13,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
         fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-        lineNumber: 10,
+        lineNumber: 12,
         columnNumber: 9
     }, undefined)
 }, void 0, false, {
     fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/index.tsx",
-    lineNumber: 9,
+    lineNumber: 11,
     columnNumber: 5
 }, undefined));
 if (true) module.hot.accept();
@@ -16099,9 +16688,9 @@ __webpack_require__.d(__webpack_exports__, {
 /* ESM import */var _lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/jsx-dev-runtime/index.js");
 /* ESM import */var _counter_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./src/screens/counter/counter.scss");
 /* ESM import */var _components_Wrapper_wrapper_component_tsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("(react:background)/./src/components/Wrapper/wrapper.component.tsx");
-/* ESM import */var _components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("(react:background)/./src/components/Button/button.component.tsx");
 /* ESM import */var react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("(react:background)/./node_modules/react-router/dist/index.js");
-/* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/index.js");
+/* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/index.js");
+/* ESM import */var _components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("(react:background)/./src/components/Button/button.component.tsx");
 /* module decorator */ module = __webpack_require__.hmd(module);
 /* provided dependency */ var __prefresh_utils__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react-refresh-webpack-plugin/runtime/refresh.cjs");
 
@@ -16110,7 +16699,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 
 
-const __snapshot_5e3cc_565c7_2 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_5e3cc_565c7_2", function() {
+const __snapshot_5e3cc_5167e_2 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_5e3cc_5167e_2", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
     __SetClasses(el, "counter");
@@ -16174,7 +16763,7 @@ const __snapshot_5e3cc_565c7_2 = /*#__PURE__*/ (__webpack_require__("(react:back
         7
     ]
 ], undefined, globDynamicComponentEntry);
-const __snapshot_5e3cc_565c7_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_5e3cc_565c7_1", function() {
+const __snapshot_5e3cc_5167e_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_5e3cc_5167e_1", function() {
     const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
     const el = __CreateView(pageId);
     __SetClasses(el, "app");
@@ -16184,7 +16773,7 @@ const __snapshot_5e3cc_565c7_1 = /*#__PURE__*/ (__webpack_require__("(react:back
 }, null, (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren_0 */.__DynamicPartChildren_0), undefined, globDynamicComponentEntry);
 function Counter() {
     const nav = (0,react_router__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
-    const [count, setCount] = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_4__.useState)(0);
+    const [count, setCount] = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
     const addCnt = ()=>{
         setCount(count + 1);
     };
@@ -16196,10 +16785,10 @@ function Counter() {
         }
         setCount(count - 1);
     };
-    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_5e3cc_565c7_1, {
+    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_5e3cc_5167e_1, {
         children: [
             /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Wrapper_wrapper_component_tsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_5e3cc_565c7_2, {
+                children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_5e3cc_5167e_2, {
                     values: [
                         diffCnt,
                         addCnt,
@@ -16216,9 +16805,9 @@ function Counter() {
                 lineNumber: 27,
                 columnNumber: 13
             }, this),
-            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                label: "Back",
-                onClick: ()=>nav('/')
+            /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_4__.Button, {
+                onClick: ()=>nav('/'),
+                children: "Back"
             }, void 0, false, {
                 fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/counter/counter.tsx",
                 lineNumber: 44,
@@ -16458,6 +17047,256 @@ if (moduleHot) {
 
 
 }),
+"(react:background)/./src/screens/login/login.tsx": (function (module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  LoginScreen: () => (LoginScreen)
+});
+/* ESM import */var _lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/jsx-dev-runtime/index.js");
+/* ESM import */var _lynx_js_react_runtime_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/components/lib/index.js");
+/* ESM import */var _lynx_js_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/index.js");
+/* ESM import */var _login_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("(react:background)/./src/screens/login/login.scss");
+/* ESM import */var _components_ToastMessage_toastMessage_component_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("(react:background)/./src/components/ToastMessage/toastMessage.component.tsx");
+/* ESM import */var _components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("(react:background)/./src/components/Button/button.component.tsx");
+/* ESM import */var _services_auth_service_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("(react:background)/./src/services/auth.service.ts");
+/* ESM import */var _services_user_service_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("(react:background)/./src/services/user.service.ts");
+/* module decorator */ module = __webpack_require__.hmd(module);
+/* provided dependency */ var __prefresh_utils__ = __webpack_require__("(react:background)/./node_modules/@lynx-js/react-refresh-webpack-plugin/runtime/refresh.cjs");
+
+
+
+
+
+
+
+
+const __snapshot_e061f_043c1_1 = /*#__PURE__*/ (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .createSnapshot */.createSnapshot)("__snapshot_e061f_043c1_1", function() {
+    const pageId = (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__pageId */.__pageId);
+    const el = __CreateView(pageId);
+    __SetClasses(el, "login-container");
+    const el1 = __CreateText(pageId);
+    __SetClasses(el1, "login-title");
+    __AppendElement(el, el1);
+    const el2 = __CreateRawText("Welcome Back!");
+    __AppendElement(el1, el2);
+    const el3 = __CreateText(pageId);
+    __SetClasses(el3, "login-subtitle");
+    __AppendElement(el, el3);
+    const el4 = __CreateRawText("Please log in to continue");
+    __AppendElement(el3, el4);
+    const el5 = __CreateView(pageId);
+    __SetClasses(el5, "login-form");
+    __AppendElement(el, el5);
+    const el6 = __CreateElement("input", pageId);
+    __SetClasses(el6, "login-input");
+    __SetAttribute(el6, "placeholder", "Username");
+    __AppendElement(el5, el6);
+    const el7 = __CreateElement("input", pageId);
+    __SetClasses(el7, "login-input");
+    __SetAttribute(el7, "placeholder", "Password");
+    __SetAttribute(el7, "type", "password");
+    __AppendElement(el5, el7);
+    const el8 = __CreateWrapperElement(pageId);
+    __AppendElement(el5, el8);
+    const el9 = __CreateView(pageId);
+    __SetClasses(el9, "login-links");
+    __AppendElement(el, el9);
+    const el10 = __CreateText(pageId);
+    __SetClasses(el10, "login-link-text");
+    __AppendElement(el9, el10);
+    const el11 = __CreateRawText("Forgot Password?");
+    __AppendElement(el10, el11);
+    const el12 = __CreateText(pageId);
+    __SetClasses(el12, "login-link-text");
+    __AppendElement(el9, el12);
+    const el13 = __CreateRawText("Don't have an account? Sign Up");
+    __AppendElement(el12, el13);
+    return [
+        el,
+        el1,
+        el2,
+        el3,
+        el4,
+        el5,
+        el6,
+        el7,
+        el8,
+        el9,
+        el10,
+        el11,
+        el12,
+        el13
+    ];
+}, [
+    function(ctx) {
+        if (ctx.__elements) __SetAttribute(ctx.__elements[6], "value", ctx.__values[0]);
+    },
+    (snapshot, index, oldValue)=>(__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 6, "bindEvent", "input", ''),
+    (snapshot, index, oldValue)=>(__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .updateEvent */.updateEvent)(snapshot, index, oldValue, 7, "bindEvent", "input", ''),
+    function(ctx) {
+        if (ctx.__elements) __SetAttribute(ctx.__elements[7], "value", ctx.__values[3]);
+    }
+], [
+    [
+        (__webpack_require__("(react:background)/./node_modules/@lynx-js/react/runtime/lib/internal.js")/* .__DynamicPartChildren */.__DynamicPartChildren),
+        8
+    ]
+], undefined, globDynamicComponentEntry);
+function LoginScreen() {
+    const [formValues, setFormValues] = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+        email: '',
+        password: ''
+    });
+    const [loading, setLoading] = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+    // <<-- เรียกใช้ useToast Hook ที่นี่ -->>
+    const { addToast } = (0,_components_ToastMessage_toastMessage_component_js__WEBPACK_IMPORTED_MODULE_4__.useToast)();
+    /*const handleInputChange = useCallback((field: keyof LoginRequest, value: string) => {
+        debugger;
+        setFormValues((prev: any) => ({ ...prev, [field]: value }));
+    }, []);*/ const handleInputUserName = (event)=>{
+        formValues.email = event.detail.value;
+        console.log(formValues.email);
+        setFormValues(formValues);
+    };
+    const handleInputPassword = (event)=>{
+        formValues.password = event.detail.value;
+        console.log(formValues.password);
+        setFormValues(formValues);
+    };
+    const handleLogin = (0,_lynx_js_react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async ()=>{
+        setLoading(true);
+        if (!formValues.email || !formValues.password) {
+            addToast({
+                severity: 'warn',
+                summary: 'Input Required',
+                detail: 'Please fill in all fields.'
+            });
+            setLoading(false);
+            return;
+        }
+        try {
+            // ใช้ await เพื่อรอ Promise จาก authService.login
+            const authResponse = await _services_auth_service_js__WEBPACK_IMPORTED_MODULE_6__.authService.login(formValues);
+            console.log('Login successful, AuthResponse:', authResponse);
+            // เมื่อ Login สำเร็จ ให้ fetch ข้อมูลผู้ใช้
+            debugger;
+            const userData = await _services_user_service_js__WEBPACK_IMPORTED_MODULE_7__.userService.fetchUser();
+            console.log('User data fetched:', userData);
+            if (userData) addToast({
+                severity: 'success',
+                summary: 'Login Success',
+                detail: `Welcome, ${userData.email || 'User'}!`
+            });
+            else addToast({
+                severity: 'warn',
+                summary: 'Login Success',
+                detail: 'But user data could not be retrieved.'
+            });
+        } catch (err) {
+            console.error('Login or fetchUser failed:', err);
+            let errorMessage = 'An unexpected error occurred during login.';
+            if (err && typeof err === 'object' && err.message) try {
+                const parsedError = JSON.parse(err.message);
+                errorMessage = parsedError.message || errorMessage;
+            // สามารถใช้ parsedError.statusCode หรือ parsedError.errors ได้
+            } catch (parseError) {
+                errorMessage = err.message; // ถ้า parse ไม่ได้ ก็ใช้ message เดิม
+            }
+            addToast({
+                severity: 'error',
+                summary: 'Login Failed',
+                detail: errorMessage
+            });
+        } finally{
+            setLoading(false);
+        }
+    }, [
+        formValues,
+        addToast
+    ]);
+    return /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_lynx_js_react_runtime_components__WEBPACK_IMPORTED_MODULE_1__.Page, {
+        children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(__snapshot_e061f_043c1_1, {
+            values: [
+                formValues.email,
+                handleInputUserName,
+                handleInputPassword,
+                formValues.password
+            ],
+            children: /*#__PURE__*/ (0,_lynx_js_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Button_button_component_js__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                className: "login-submit-button",
+                onClick: handleLogin,
+                children: loading ? 'Logging in...' : 'Log In'
+            }, void 0, false, {
+                fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/login/login.tsx",
+                lineNumber: 111,
+                columnNumber: 21
+            }, this)
+        }, void 0, false, {
+            fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/login/login.tsx",
+            lineNumber: 89,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
+        fileName: "/Users/admin/workspace/SELFDEV/petverse/petverse-front-lynx/src/screens/login/login.tsx",
+        lineNumber: 88,
+        columnNumber: 9
+    }, this);
+}
+
+
+// @ts-nocheck
+const isPrefreshComponent = __prefresh_utils__.shouldBind(module);
+
+const moduleHot = module.hot;
+
+if (moduleHot) {
+  const currentExports = __prefresh_utils__.getExports(module);
+  const previousHotModuleExports = moduleHot.data
+    && moduleHot.data.moduleExports;
+
+  __prefresh_utils__.registerExports(currentExports, module.id);
+
+  if (isPrefreshComponent) {
+    if (previousHotModuleExports) {
+      try {
+        __prefresh_utils__.flush();
+        if (
+          typeof __prefresh_errors__ !== 'undefined'
+          && __prefresh_errors__
+          && __prefresh_errors__.clearRuntimeErrors
+        ) {
+          __prefresh_errors__.clearRuntimeErrors();
+        }
+      } catch (e) {
+        // Only available in newer webpack versions.
+        if (moduleHot.invalidate) {
+          moduleHot.invalidate();
+        } else {
+          globalThis.location.reload();
+        }
+      }
+    }
+
+    moduleHot.dispose(data => {
+      data.moduleExports = __prefresh_utils__.getExports(module);
+    });
+
+    moduleHot.accept(function errorRecovery() {
+      if (
+        typeof __prefresh_errors__ !== 'undefined'
+        && __prefresh_errors__
+        && __prefresh_errors__.handleRuntimeError
+      ) {
+        __prefresh_errors__.handleRuntimeError(error);
+      }
+
+      __webpack_require__.c[module.id].hot.accept(errorRecovery);
+    });
+  }
+}
+
+
+}),
 "(react:background)/./src/screens/product/product.tsx": (function (module, __webpack_exports__, __webpack_require__) {
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
@@ -16583,7 +17422,34 @@ __webpack_require__.r(__webpack_exports__);
   if (true) {
     (function() {
       var localsJsonString = undefined;
-      // 1748372745944
+      // 1748803320296
+      var cssReload = __webpack_require__("(react:background)/./node_modules/@lynx-js/css-extract-webpack-plugin/runtime/hotModuleReplacement.cjs")(module.id, {}, "");
+      // only invalidate when locals change
+      if (
+        module.hot.data &&
+        module.hot.data.value &&
+        module.hot.data.value !== localsJsonString
+      ) {
+        module.hot.invalidate();
+      } else {
+        module.hot.accept();
+      }
+      module.hot.dispose(function(data) {
+        data.value = localsJsonString;
+        cssReload();
+      });
+    })();
+  }
+
+}),
+"(react:background)/./src/components/ToastMessage/toastMessages.component.scss": (function (module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+  if (true) {
+    (function() {
+      var localsJsonString = undefined;
+      // 1748803320297
       var cssReload = __webpack_require__("(react:background)/./node_modules/@lynx-js/css-extract-webpack-plugin/runtime/hotModuleReplacement.cjs")(module.id, {}, "");
       // only invalidate when locals change
       if (
@@ -16610,7 +17476,34 @@ __webpack_require__.r(__webpack_exports__);
   if (true) {
     (function() {
       var localsJsonString = undefined;
-      // 1748372745944
+      // 1748803320297
+      var cssReload = __webpack_require__("(react:background)/./node_modules/@lynx-js/css-extract-webpack-plugin/runtime/hotModuleReplacement.cjs")(module.id, {}, "");
+      // only invalidate when locals change
+      if (
+        module.hot.data &&
+        module.hot.data.value &&
+        module.hot.data.value !== localsJsonString
+      ) {
+        module.hot.invalidate();
+      } else {
+        module.hot.accept();
+      }
+      module.hot.dispose(function(data) {
+        data.value = localsJsonString;
+        cssReload();
+      });
+    })();
+  }
+
+}),
+"(react:background)/./src/screens/login/login.scss": (function (module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+  if (true) {
+    (function() {
+      var localsJsonString = undefined;
+      // 1748803320295
       var cssReload = __webpack_require__("(react:background)/./node_modules/@lynx-js/css-extract-webpack-plugin/runtime/hotModuleReplacement.cjs")(module.id, {}, "");
       // only invalidate when locals change
       if (
@@ -16637,7 +17530,7 @@ __webpack_require__.r(__webpack_exports__);
   if (true) {
     (function() {
       var localsJsonString = undefined;
-      // 1748372745940
+      // 1748803320288
       var cssReload = __webpack_require__("(react:background)/./node_modules/@lynx-js/css-extract-webpack-plugin/runtime/hotModuleReplacement.cjs")(module.id, {}, "");
       // only invalidate when locals change
       if (
@@ -16752,7 +17645,7 @@ __webpack_require__.hu = (chunkId) => ('' + chunkId + '.' + __webpack_require__.
 })();
 // webpack/runtime/get_full_hash
 (() => {
-__webpack_require__.h = () => ("a73c8bd5296ec8c9")
+__webpack_require__.h = () => ("f670898939d2d07f")
 })();
 // webpack/runtime/get_main_filename/update manifest
 (() => {
@@ -17217,7 +18110,7 @@ if (typeof globalThis !== "undefined") {
 // webpack/runtime/lynx css hot update
 (() => {
 
-__webpack_require__.cssHotUpdateList = [["main",".rspeedy/main/main.14943a42a43df3a6.css.hot-update.json"]];
+__webpack_require__.cssHotUpdateList = [["main",".rspeedy/main/main.1e49cde4c96c74a2.css.hot-update.json"]];
 
 })();
 // webpack/runtime/make_namespace_object

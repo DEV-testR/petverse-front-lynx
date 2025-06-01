@@ -1,0 +1,85 @@
+/* src/components/ToastMessages/ToastMessages.css */
+
+.toast-container {
+  /* กำหนดตำแหน่งให้ Toast ลอยอยู่ตรงกลางด้านบนของหน้าจอ */
+  position: absolute;
+
+  /*
+    ปรับ top เพื่อรองรับ Safe Area Insets:
+    เราจะใช้ค่า top เริ่มต้นที่ 50px
+    และเพิ่มค่า env(safe-area-inset-top) เข้าไป
+    env() เป็นฟังก์ชัน CSS ที่ใช้ดึงค่า environment variables เช่น safe-area-insets
+    ซึ่งจะให้ค่าเป็น 0 ถ้าไม่ใช่เครื่องที่มี Safe Area (เช่น iPhone รุ่นเก่าๆ หรือ Android)
+    และให้ค่าเป็นขนาดของ Safe Area (เช่น 44px สำหรับ Notch)
+  */
+  top: calc(50px + env(safe-area-inset-top)); /* เพิ่มระยะห่างจากด้านบนโดยคำนึงถึง Safe Area */
+
+  /* ทำให้คอนเทนเนอร์อยู่ตรงกลางแนวนอน */
+  left: 50%;
+  transform: translateX(-50%); /* เลื่อนกลับไปครึ่งหนึ่งของความกว้างตัวเอง */
+
+  width: 280px; /* ความกว้างของกล่อง Toast */
+  display: flex;
+  flex-direction: column; /* จัดเรียง Toast จากบนลงล่าง */
+  align-items: center; /* จัดให้ Toast อยู่ตรงกลางแนวนอนของคอนเทนเนอร์ */
+  z-index: 9999; /* ให้ Toast อยู่ด้านบนสุดของทุกองค์ประกอบ */
+  /* อาจจะเพิ่ม max-height และ overflow-y: auto; ถ้ามี Toast เยอะมาก */
+}
+
+.toast-item {
+  width: 100%; /* ให้ Toast เต็มความกว้างของ toast-container */
+  padding: 15px 20px;
+  margin-bottom: 10px; /* ระยะห่างระหว่างแต่ละ Toast */
+  border-radius: 8px;
+  background-color: #333; /* สีพื้นหลังเริ่มต้น */
+  color: #fff; /* สีข้อความเริ่มต้น */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* เงา (ถ้า Lynx รองรับ box-shadow) */
+  display: flex;
+  flex-direction: column; /* จัดเนื้อหาในแนวตั้ง (summary, detail) */
+  gap: 5px; /* ระยะห่างระหว่าง summary กับ detail */
+  /* Animation: Lynx อาจจะรองรับ CSS Transitions หรือ Keyframes ถ้าไม่รองรับ ให้ลบออก */
+  /* opacity: 0; */
+  /* transform: translateY(20px); */
+  /* animation: fade-in 0.3s forwards; */
+}
+
+/* @keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+
+.toast-summary {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center; /* จัดข้อความ summary ให้อยู่ตรงกลาง */
+}
+
+.toast-detail {
+  font-size: 14px;
+  text-align: center; /* จัดข้อความ detail ให้อยู่ตรงกลาง */
+}
+
+/* Severity specific styles */
+.toast-success {
+  background-color: #28a745; /* Green */
+}
+
+.toast-error {
+  background-color: #dc3545; /* Red */
+}
+
+.toast-warn {
+  background-color: #ffc107; /* Yellow */
+  color: #333; /* ข้อความสีเข้มสำหรับพื้นหลังสีเหลือง */
+}
+
+.toast-info {
+  background-color: #17a2b8; /* Cyan/Blue */
+}

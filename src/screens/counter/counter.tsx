@@ -1,8 +1,8 @@
 import "./counter.scss";
 import Wrapper from "../../components/Wrapper/wrapper.component.tsx";
-import Button from "../../components/Button/button.component.js";
 import {useNavigate} from "react-router";
 import {useState} from "@lynx-js/react";
+import {Button} from "../../components/Button/button.component.js";
 
 export function Counter()  {
     const nav = useNavigate();
@@ -41,7 +41,7 @@ export function Counter()  {
                     </view>
                 </view>
             </Wrapper>
-            <Button label="Back" onClick={() => nav('/')}/>
+            <Button onClick={() => nav('/')}>Back</Button>
         </view>
     );
 }

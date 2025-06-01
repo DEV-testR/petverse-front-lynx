@@ -4,7 +4,7 @@ import {useNavigate} from "react-router";
 import "./App.css";
 import lynxLogo from "./assets/lynx-logo.png"
 import reactLynxLogo from "./assets/react-logo.png"
-import Button from "./components/Button/button.component.js";
+import {Button} from "./components/Button/button.component.js";
 
 export function App(props: {
     onMounted?: () => void
@@ -34,9 +34,10 @@ export function App(props: {
                     <text className='Title'>React</text>
                     <text className='Subtitle'>on Lynx</text>
                 </view>
-                <Button label="Navigate to Home" onClick={() => nav('/home')}/>
-                <Button label="Navigate to Product" onClick={() => nav('/product')}/>
-                <Button label="Navigate to Counter" onClick={() => nav('/counter')}/>
+                <Button onClick={() => nav('/home')}>Navigate to Home</Button>
+                <Button onClick={() => nav('/product')}>Navigate to Product</Button>
+                <Button onClick={() => nav('/counter')}>Navigate to Counter</Button>
+                <Button onClick={() => nav('/login')}>Navigate to Login</Button>
                 <view style={{flex: 1}}></view>
             </view>
         </view>

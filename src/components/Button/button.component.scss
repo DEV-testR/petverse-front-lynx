@@ -1,3 +1,4 @@
+/*
 .btn-text {
   font-size: 17px;
   color: #ffffff;
@@ -23,4 +24,42 @@
   &.active {
     background-color: #0056b3;
   }
+}
+*/
+
+.button-component {
+  width: 100%;
+  height: 55px;
+  background-color: #3498DB; /* Primary Blue */
+  //border-radius: 10px;
+  display: flex; /* ใช้ Flexbox เพื่อจัดเนื้อหาตรงกลาง */
+  justify-content: center;
+  align-items: center;
+  /* Shadow สำหรับ Android และ iOS (CSS properties) */
+  //box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+
+  //margin: 10px;
+  //padding: 12px 24px;
+  //background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: transform 0.1s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:active {
+    transform: scale(0.96);
+    background-color: #0056b3;
+  }
+
+  &.active {
+    background-color: #0056b3;
+  }
+}
+
+.button-text {
+  color: #FFFFFF; /* White */
+  font-size: 19px;
+  font-weight: bold;
 }
